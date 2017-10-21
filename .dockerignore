@@ -1,0 +1,7 @@
+.circleci
+.git
+.dockerignore
+docker-compose.yml
+Dockerfile
+LICENSE
+README.md
