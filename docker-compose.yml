@@ -1,6 +1,32 @@
 version: '3.1'
 services:
-    musicbot:
-      image: jjtc/unifi
-      restart: always
-      network_mode: "host"
+  mongo:
+    image: mongo:3
+    restart: unless-stopped
+    volumes:
+      - db-data:/data/db
+    networks:
+      - unifi          
+
+  unifi:
+    build: ./
+    image: jjtc/unifi
+    restart: unless-stopped
+    depends_on:
+      - mongo
+    volumes:
+      - unifi:/var/lib/unifi
+    ports:
+      - "8080:8080/tcp"
+      - "8443:8443/tcp"
+      - "8880:8880/tcp"
+      - "8843:8843/tcp"
+    networks:
+      - unifi
+
+networks:
+  unifi:
+
+volumes:
+  db-data:
+  unifi:

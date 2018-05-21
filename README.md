@@ -11,19 +11,12 @@ This image does not container the "libubnt_webrtc_jni.so" shared object library,
 ```
 mkdir unifi
 cd unifi
+wget https://raw.githubusercontent.com/JJTC-Docker/unifi/master/docker-compose.yml
 ```
 
 ### Run
 ```
-docker run -d \
-  --name=unifi \
-  -v $(pwd):/var/lib/unifi \
-  -p 8080:8080 \
-  -p 8081:8081 \
-  -p 8443:8443 \
-  -p 8843:8843 \
-  -p 8880:8880 \
-  jjtc/unifi
+docker-compose up -d
 ```
 
 https://github.com/JJTC-Docker/unifi
