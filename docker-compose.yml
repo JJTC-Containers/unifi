@@ -17,10 +17,14 @@ services:
     volumes:
       - unifi:/var/lib/unifi
     ports:
-      - "8080:8080/tcp"
-      - "8443:8443/tcp"
-      - "8880:8880/tcp"
-      - "8843:8843/tcp"
+      - "3478:3478/udp" # Port used for STUN
+      - "8080:8080/tcp" # Port used for device and controller communication
+      - "8443:8443/tcp" # Port used for controller GUI/API as seen in a web browser
+      - "8880:8880/tcp" # Port used for HTTP portal redirection
+      - "8843:8843/tcp" # Port used for HTTPS portal redirection
+      - "6789:6789/tcp" # Port used for UniFi mobile speed test
+      - "10001:10001/udp" # Port used for AP discovery
+      - "1900:1900/udp" # Port used for "Make controller discoverable on L2 network" in controller settings
     networks:
       - unifi
 
